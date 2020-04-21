@@ -7,10 +7,11 @@ class App extends Component {
         characters: []
     };
 
+    url = process.env.NODE_ENV === 'production' ? 'https://myfavchar-api.herokuapp.com' : 'http://localhost:8000';
+
     componentDidMount() {
         this.getCharacters();
     }
-
 
     handleEvent = characterId => {
         this.state.characters.map(character => {
@@ -54,7 +55,7 @@ class App extends Component {
             },
             body: JSON.stringify({character_id: characterId})
         };
-        fetch('http://localhost:8000/api/vote', requestOptions)
+        fetch(this.url + '/api/vote', requestOptions)
             .then(async response => {
                 const data = await response.json();
 
@@ -81,7 +82,7 @@ class App extends Component {
                 'Content-Type': 'application/json'
             }
         };
-        fetch('http://localhost:8000/api/characters', requestOptions)
+        fetch(this.url + '/api/characters', requestOptions)
             .then(async response => {
                 const data = await response.json();
 
