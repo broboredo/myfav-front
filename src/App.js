@@ -41,9 +41,6 @@ class App extends Component {
             <div className="row">
                 {cards}
             </div>
-            {/*<div className="row">
-                <a href="#" onRefresh={this.handleRefresh()}>Refresh</a>
-            </div>*/}
         </div>
     }
 
