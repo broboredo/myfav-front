@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import Card from './components/Card';
+import Card from './components/Card/Card';
 
 class App extends Component {
     state = {
@@ -26,8 +26,8 @@ class App extends Component {
     }
 
     render() {
-        const cards = this.state.characters.map(character => (
-            <div className="col-6">
+        const cards = this.state.characters.map((character) => (
+            <div className="col-12 col-xl-5 col-lg-5 col-md-5">
                 <Card key={character.id}
                       id={character.id}
                       name={character.name}
@@ -35,11 +35,15 @@ class App extends Component {
                       img={character.img}
                       onVote={this.handleEvent}/>
             </div>
-        ));
+    ));
 
         return <div className="container">
             <div className="row">
-                {cards}
+                {cards[0]}
+                <div className="divide-vs col-12 col-xl-2 col-lg-2 col-md-2">
+                    <p className="">VS</p>
+                </div>
+                {cards[1]}
             </div>
         </div>
     }
