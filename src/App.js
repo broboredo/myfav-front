@@ -7,7 +7,7 @@ class App extends Component {
         characters: []
     };
 
-    url = process.env.NODE_ENV === 'production' ? 'https://myfavchar-api.herokuapp.com' : 'http://localhost:8000';
+    url = process.env.NODE_ENV === 'production' ? 'https://myfavchar-api.herokuapp.com' : 'https://myfavchar-api.herokuapp.com';
 
     componentDidMount() {
         this.getCharacters();
