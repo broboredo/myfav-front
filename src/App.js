@@ -7,12 +7,20 @@ import Title from "./components/Title/Title";
 class App extends Component {
     state = {
         characters: [],
-        loading: true
+        loading: true,
+        refreshWord: ''
     };
 
-    url = process.env.NODE_ENV === 'production' ? 'https://myfavchar-api.herokuapp.com' : 'https://myfavchar-api.herokuapp.com';
+    url = process.env.NODE_ENV === 'production' ? 'https://myfavchar-api.herokuapp.com' : 'http://localhost:8000';
+
+    refreshWords = [
+        'D`OH!',
+        'blah',
+        'nenhum!'
+    ]
 
     componentDidMount() {
+        this.getRandomRefreshWord();
         this.getCharacters();
     }
 
@@ -24,6 +32,8 @@ class App extends Component {
         });
     };
 
+    handleRefresh = () => this.getCharacters()
+
     render() {
         const cards = this.state.characters.map((character, index) => (
             <div className={`col-12 col-xl-4 offset-xl-${index < 1 ? '1' : '0'} col-lg-5 col-md-5`}>
@@ -32,13 +42,14 @@ class App extends Component {
                       name={character.name}
                       sitcomName={character.sitcom.name}
                       img={character.img}
+                      isFirst={character.is_first}
                       onVote={this.handleEvent}/>
             </div>
     ));
 
         return (
             this.state.loading ? (<Spinner enable={this.state.loading} />) :
-        <div onLoad={this.handleOnLoad} className="container">
+        <div className="container">
             <Title title="Qual o seu favorito?"/>
             <div className="row">
                 {cards[0]}
@@ -46,6 +57,12 @@ class App extends Component {
                     <p className="">VS</p>
                 </div>
                 {cards[1]}
+            </div>
+
+            <div className="text-center mt-5">
+                <button type="button" onClick={this.handleRefresh} className="nes-btn btn-sm is-warning text-uppercase">
+                    {this.state.refreshWord}
+                </button>
             </div>
         </div>)
     }
@@ -79,6 +96,7 @@ class App extends Component {
     }
 
     getCharacters() {
+        this.getRandomRefreshWord();
         this.setState({loading: true});
         const requestOptions = {
             method: 'GET',
@@ -103,6 +121,11 @@ class App extends Component {
                 this.setState({errorMessage: error});
                 console.error('There was an error!', error);
             }).finally(() => this.setState({loading: false}));
+    }
+
+    getRandomRefreshWord() {
+        const word = this.refreshWords[Math.floor(Math.random() * this.refreshWords.length)];
+        this.setState({ refreshWord:word });
     }
 }
 
