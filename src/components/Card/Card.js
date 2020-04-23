@@ -22,13 +22,6 @@ class Card extends Component {
                         <h6 className="subtitle">{this.props.sitcomName}</h6>
                         <figure className="position-relative">
                             <img alt={this.props.name} srcSet={ this.props.img } style={{maxHeight: '250px'}} />
-
-                            {
-                                this.props.is_first === true ?
-                                <i title="Este é o primeiro lugar neste momento"
-                                   className="nes-icon trophy is-medium position-absolute"></i>
-                                : ''
-                            }
                         </figure>
 
                         <div className="justify-content-center">
