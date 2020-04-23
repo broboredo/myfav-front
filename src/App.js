@@ -26,8 +26,8 @@ class App extends Component {
     }
 
     render() {
-        const cards = this.state.characters.map((character) => (
-            <div className="col-12 col-xl-5 col-lg-5 col-md-5">
+        const cards = this.state.characters.map((character, index) => (
+            <div className={`col-12 col-xl-4 offset-xl-${index < 1 ? '1' : '0'} col-lg-5 col-md-5`}>
                 <Card key={character.id}
                       id={character.id}
                       name={character.name}
