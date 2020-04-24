@@ -75,14 +75,14 @@ class App extends Component {
 
 
 
-            <div className="">
+            {/*<div className="">
                 <button type="button" onClick={this.showRanking} className="nes-btn btn-sm text-uppercase mr-5">
                     ranking
                 </button>
                 <button type="button" onClick={this.showVersus} className="nes-btn btn-sm text-uppercase">
                     vs
                 </button>
-            </div>
+            </div>*/}
         </div>)
     }
 
