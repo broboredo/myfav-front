@@ -7,8 +7,10 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "bootstrap": "^4.4.1",
+    "dialog-polyfill": "^0.5.1",
     "nes.css": "^2.3.0",
     "react": "^16.13.1",
+    "react-autosuggest": "^10.0.0",
     "react-bootstrap": "^1.0.0",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
