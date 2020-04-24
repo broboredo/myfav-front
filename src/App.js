@@ -83,6 +83,20 @@ class App extends Component {
                     vs
                 </button>
             </div>*/}
+
+            <div style={{color: 'white', height: '0px', overflow: 'hidden'}}>
+                <h1>Políticas de Privacidade</h1>
+                <ul>
+                    <li>Terceiros, incluindo o Google, usam cookies para veicular anúncios com base em visitas anteriores do usuário ao seu website ou a outros websites.</li>
+                    <li>Com o uso de cookies de publicidade, o Google e os parceiros dele podem veicular anúncios para os usuários com base nas visitas feitas aos seus sites e/ou a outros sites na Internet.</li>
+                    <li>Os usuários podem desativar a publicidade personalizada acessando as Configurações de anúncios. Como alternativa, você pode orientar os usuários a acessar o site www.aboutads.info para desativar o uso de cookies de publicidade personalizada de terceiros.</li>
+                </ul>
+
+                <h1>Sobre</h1>
+                <p>
+                    Somos um mini-game de rankeamento de personagens
+                </p>
+            </div>
         </div>)
     }
 
