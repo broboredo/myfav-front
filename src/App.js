@@ -83,14 +83,14 @@ class App extends Component {
             </div>
 
 
-            <div className="col-12 d-flex justify-content-center m-3">
-                <button type="button" onClick={this.showRanking} className="nes-btn btn-sm text-uppercase mr-3">
+            <div className="menu col-lg-12 col-md-12 col-xl-12 col-sm-12 col-12 mt-3 mb-3">
+                <button type="button" onClick={this.showRanking} className="nes-btn btn-sm text-uppercase">
                     ranking
                 </button>
-                <button type="button" onClick={this.showVersus} className="nes-btn btn-sm text-uppercase mr-3">
+                <button type="button" onClick={this.showVersus} className="nes-btn btn-sm text-uppercase">
                     1x1
                 </button>
-                <button type="button" onClick={this.showPolicies} className="nes-btn btn-sm text-uppercase mr-3">
+                <button type="button" onClick={this.showPolicies} className="nes-btn btn-sm text-uppercase">
                     Políticas
                 </button>{/*
                 <button type="button" onClick={this.showAbout} className="nes-btn btn-sm text-uppercase">

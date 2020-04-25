@@ -90,7 +90,9 @@ p {
   }
 }
 
-
+.menu button {
+  margin: 0.6rem;
+}
 
 .loading {
   display: inline-block;
