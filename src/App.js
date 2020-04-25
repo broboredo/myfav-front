@@ -5,6 +5,8 @@ import Card from './components/Card/Card';
 import Title from "./components/Title/Title";
 import Table from "./components/Table/Table";
 import Versus from "./components/Versus/Versus";
+import Policies from "./components/Policies/Policies";
+import About from "./components/About/About";
 
 class App extends Component {
     state = {
@@ -13,7 +15,9 @@ class App extends Component {
         loading: true,
         rankingList: [],
         visibleRanking: false,
-        visibleVersus: false
+        visibleVersus: false,
+        visiblePolicies: false,
+        visibleAbout: false
     };
 
     url = process.env.NODE_ENV === 'production' ? 'https://myfavchar-api.herokuapp.com' : 'http://localhost:8000';
@@ -23,6 +27,7 @@ class App extends Component {
     }
 
     handleEvent = characterId => {
+        // eslint-disable-next-line
         this.state.characters.map(character => {
             if (character.id === characterId) {
                 this.vote(character.id);
@@ -55,8 +60,12 @@ class App extends Component {
                                                     onClose={this.closeRanking} />) :
                     this.state.visibleVersus ? (<Versus visible={this.state.visibleVersus}
                                                         onClose={this.closeVersus} />) :
+                        this.state.visiblePolicies ? (<Policies visible={this.state.visiblePolicies}
+                                                                onClose={this.closePolicies} />) :
+                            this.state.visibleAbout ? (<About visible={this.state.visibleAbout}
+                                                                    onClose={this.closeAbout} />) :
         <div className="container">
-            <Title title="Qual o seu favorito?"/>
+            <Title title="Qual o seu favorito?" className="mb-6 mt-3" />
 
 
             <div className="row">
@@ -74,28 +83,19 @@ class App extends Component {
             </div>
 
 
-
-            {/*<div className="">
-                <button type="button" onClick={this.showRanking} className="nes-btn btn-sm text-uppercase mr-5">
+            <div className="col-12 d-flex justify-content-center m-3">
+                <button type="button" onClick={this.showRanking} className="nes-btn btn-sm text-uppercase mr-3">
                     ranking
                 </button>
-                <button type="button" onClick={this.showVersus} className="nes-btn btn-sm text-uppercase">
-                    vs
+                <button type="button" onClick={this.showVersus} className="nes-btn btn-sm text-uppercase mr-3">
+                    1x1
                 </button>
-            </div>*/}
-
-            <div style={{color: 'white', height: '0px', overflow: 'hidden'}}>
-                <h1>Políticas de Privacidade</h1>
-                <ul>
-                    <li>Terceiros, incluindo o Google, usam cookies para veicular anúncios com base em visitas anteriores do usuário ao seu website ou a outros websites.</li>
-                    <li>Com o uso de cookies de publicidade, o Google e os parceiros dele podem veicular anúncios para os usuários com base nas visitas feitas aos seus sites e/ou a outros sites na Internet.</li>
-                    <li>Os usuários podem desativar a publicidade personalizada acessando as Configurações de anúncios. Como alternativa, você pode orientar os usuários a acessar o site www.aboutads.info para desativar o uso de cookies de publicidade personalizada de terceiros.</li>
-                </ul>
-
-                <h1>Sobre</h1>
-                <p>
-                    Somos um mini-game de rankeamento de personagens
-                </p>
+                <button type="button" onClick={this.showPolicies} className="nes-btn btn-sm text-uppercase mr-3">
+                    Políticas
+                </button>{/*
+                <button type="button" onClick={this.showAbout} className="nes-btn btn-sm text-uppercase">
+                    Sobre
+                </button>*/}
             </div>
         </div>)
     }
@@ -204,6 +204,30 @@ class App extends Component {
     closeVersus = () => {
         this.setState({
             visibleVersus: false
+        })
+    }
+
+    showPolicies = () => {
+        this.setState({
+            visiblePolicies: true
+        })
+    }
+
+    closePolicies = () => {
+        this.setState({
+            visiblePolicies: false
+        })
+    }
+
+    showAbout = () => {
+        this.setState({
+            visibleAbout: true
+        })
+    }
+
+    closeAbout = () => {
+        this.setState({
+            visibleAbout: false
         })
     }
 }

@@ -1,11 +1,13 @@
 .Versus {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background: #fff;
-    overflow: hidden;
+    /*display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: hidden; */
+}
+
+body {
+    display: block;
 }
 
 .versus_react-autosuggest__suggestions-container--open {
@@ -28,4 +30,27 @@
 
 .versus_react-autosuggest__suggestions-list li:hover {
     background: grey;
+}
+
+.Versus .divide-vs {
+    align-self: start;
+}
+
+.Versus-Card .hold-badge {
+    position: absolute;
+    right: 30px;
+    bottom: -20px;
+}
+
+.Versus-Card .hold-badge span.count-votes {
+    padding: 0 5px;
+}
+
+.Versus-Card .hold-badge span.count-votes,
+.Versus-Card .hold-badge.is-icon span:last-child {
+    width: auto;
+}
+
+.Versus-Card .hold-badge.is-icon span:last-child {
+    font-size: inherit;
 }
