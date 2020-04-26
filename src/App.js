@@ -17,13 +17,35 @@ class App extends Component {
         visibleRanking: false,
         visibleVersus: false,
         visiblePolicies: false,
-        visibleAbout: false
+        visibleAbout: false,
+        appInstalled: false
     };
 
     url = process.env.NODE_ENV === 'production' ? 'https://myfavchar-api.herokuapp.com' : 'http://localhost:8000';
+    installPrompt = null;
 
     componentDidMount() {
         this.getCharacters();
+
+        window.addEventListener('beforeinstallprompt',e=>{
+            // For older browsers
+            e.preventDefault();
+            console.log("Install Prompt fired");
+            this.installPrompt = e;
+            // See if the app is already installed, in that case, do nothing
+            if((window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true){
+                return false;
+            }
+
+            // Set the state variable to make button visible
+            this.setState({
+                appInstalled: false
+            })
+        });
+
+        if (window.matchMedia('(display-mode: standalone)').matches || this.installPrompt === null) {
+            this.setState({appInstalled: true});
+        }
     }
 
     handleEvent = characterId => {
@@ -92,10 +114,17 @@ class App extends Component {
                 </button>
                 <button type="button" onClick={this.showPolicies} className="nes-btn btn-sm text-uppercase">
                     Políticas
-                </button>{/*
+                </button>
+                {!this.state.appInstalled ?
+                    (<button type="button" onClick={this.installApp} className="nes-btn btn-sm text-uppercase">
+                        App
+                    </button>) : ''
+                }
+                {/*
                 <button type="button" onClick={this.showAbout} className="nes-btn btn-sm text-uppercase">
                     Sobre
-                </button>*/}
+                </button>
+                */}
             </div>
         </div>)
     }
@@ -228,6 +257,27 @@ class App extends Component {
     closeAbout = () => {
         this.setState({
             visibleAbout: false
+        })
+    }
+
+    installApp = async (e) => {
+        if(!this.installPrompt) return false;
+
+        this.installPrompt.prompt();
+
+        let outcome = await this.installPrompt.userChoice;
+        if(outcome.outcome === 'accepted') {
+            console.log("App Installed")
+        } else {
+            console.log("App not installed");
+        }
+
+        // Remove the event reference
+        this.installPrompt=null;
+
+        // Hide the button
+        this.setState({
+            appInstalled: true
         })
     }
 }
